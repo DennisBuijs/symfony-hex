@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}
+<style>
+    .actions {
+        margin-top: 16px;
+        text-align: right;
+    }
+
+    .label {
+        font-weight: 600;
+    }
+
+    .contact-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <a href="{{ path('contact_list') }}">Contacts</a>
+{% endblock %}
+
+{% block header %}
+    {{ contact.firstName }} {{ contact.lastName }}
+{% endblock %}
+
+{% block body %}
+<form action="{{ path('contact_edit_post', { id: contact.id }) }}" method="post">
+    <div class="contact-details">
+        <div class="form-input">
+            <div class="label">First name</div>
+            <input type="text" value="{{ contact.firstName }}" name="firstName">
+        </div>
+
+        <div class="form-input">
+            <div class="label">Last name</div>
+            <input type="text" value="{{ contact.lastName }}" name="lastName">
+        </div>
+
+        <div class="detail">
+            <div class="label">Email</div>
+            <input type="text" value="{{ contact.email }}" name="email">
+        </div>
+    </div>
+
+    <div class="actions">
+        <button>Save</button>
+    </div>
+</form>
+{% endblock %}

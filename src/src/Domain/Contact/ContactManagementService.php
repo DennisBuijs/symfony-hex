@@ -18,4 +18,13 @@ class ContactManagementService
     {
         return $this->contactRepository->find($id);
     }
+
+    public function updateContact(string $id, Contact $contact): Contact
+    {
+        // Validation here
+
+        $this->contactRepository->update($id, $contact);
+
+        return $this->contactRepository->find($id);
+    }
 }

@@ -8,25 +8,11 @@ use App\Domain\Contact\ContactCollection;
 
 class MemoryContactRepository implements ContactRepository
 {
-    public function find(string $id): Contact
+    private array $contacts = [];
+
+    public function __construct()
     {
-        return $this->contacts()[$id];
-    }
-
-    public function findAll(): ContactCollection
-    {
-        $contactCollection = new ContactCollection();
-
-        foreach ($this->contacts() as $key => $contact) {
-            $contactCollection->add($contact);
-        }
-
-        return $contactCollection;
-    }
-
-    private function contacts(): array
-    {
-        return [
+        $this->contacts = [
             "0000004JFGQ5ZY01Y9JAK0ZSA9" => new Contact(
                 "0000004JFGQ5ZY01Y9JAK0ZSA9",
                 "First",
@@ -40,5 +26,26 @@ class MemoryContactRepository implements ContactRepository
                 "aart.appeltaart@example.com"
             ),
         ];
+    }
+
+    public function find(string $id): Contact
+    {
+        return $this->contacts[$id];
+    }
+
+    public function findAll(): ContactCollection
+    {
+        $contactCollection = new ContactCollection();
+
+        foreach ($this->contacts as $key => $contact) {
+            $contactCollection->add($contact);
+        }
+
+        return $contactCollection;
+    }
+    
+    public function update(string $id, Contact $contact): void
+    {
+        $this->contacts[$id] = $contact;
     }
 }
