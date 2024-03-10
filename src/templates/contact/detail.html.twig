@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block header %}
+    {{ contact.firstName }} {{ contact.lastName }}
+{% endblock %}
+
+{% block body %}
+    <a href="{{ path('contact_list') }}">Back</a>
+{% endblock %}

@@ -11,4 +11,9 @@ class ContactManagementService
     {
         return $this->contactRepository->findAll();
     }
+
+    public function getContact(string $id): Contact
+    {
+        return $this->contactRepository->find($id);
+    }
 }

@@ -7,7 +7,7 @@
 {% block body %}
     <ul>
         {% for contact in contacts %}
-            <li>{{ contact.firstName }} {{ contact.lastName }}</li>
+            <li><a href="{{ path('contact_detail', { id: contact.id }) }}">{{ contact.firstName }} {{ contact.lastName }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

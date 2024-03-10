@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
-    #[Route("/contact")]
+    #[Route("/contact", name: "contact_list")]
     public function get(): Response
     {
         $contactRepository = new MemoryContactRepository();
@@ -20,6 +20,19 @@ class ContactController extends AbstractController
 
         return $this->render("contact/list.html.twig", [
             "contacts" => $contacts,
+        ]);
+    }
+
+    #[Route("/contact/{id}", name: "contact_detail")]
+    public function getOne(string $id): Response
+    {
+        $contactRepository = new MemoryContactRepository();
+        $contactService = new ContactManagementService($contactRepository);
+
+        $contact = $contactService->getContact($id);
+
+        return $this->render("contact/detail.html.twig", [
+            "contact" => $contact,
         ]);
     }
 }
