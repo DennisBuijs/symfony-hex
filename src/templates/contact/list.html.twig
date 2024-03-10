@@ -1,7 +1,13 @@
-<h1>Contacts</h1>
+{% extends "base.html.twig" %}
 
-<ul>
-{% for contact in contacts %}
-<li>{{ contact.first_name }} {{ contact.last_name }}</li>
-{% endfor %}
-</ul>
+{% block header %}
+    Contacts
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for contact in contacts %}
+            <li>{{ contact.first_name }} {{ contact.last_name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
