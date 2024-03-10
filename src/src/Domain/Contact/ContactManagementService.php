@@ -32,4 +32,9 @@ class ContactManagementService
 
         return $this->contactRepository->find($id);
     }
+
+    public function deleteContact(string $id): void
+    {
+        $this->contactRepository->delete($id);
+    }
 }

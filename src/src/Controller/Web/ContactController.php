@@ -73,4 +73,12 @@ class ContactController extends AbstractController
 
         return $this->redirect('/contact/' . $id);
     }
+
+    #[Route("/contact/{id}/delete", name: "contact_delete", methods: ["GET"])]
+    public function delete(string $id, Request $request): Response
+    {
+        $this->contactManagementService->deleteContact($id);
+
+        return $this->redirect('/contact/');
+    }
 }

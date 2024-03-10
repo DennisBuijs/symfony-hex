@@ -8,4 +8,5 @@ interface ContactRepository
     public function findAll(): ContactCollection;
     public function create(Contact $contact): void;
     public function update(string $id, Contact $contact): void;
+    public function delete(string $id): void;
 }

@@ -53,4 +53,9 @@ class MemoryContactRepository implements ContactRepository
     {
         $this->contacts[$id] = $contact;
     }
+
+    public function delete(string $id): void
+    {
+        unset($this->contacts[$id]);
+    }
 }

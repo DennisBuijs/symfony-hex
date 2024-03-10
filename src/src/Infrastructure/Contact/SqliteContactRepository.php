@@ -75,4 +75,9 @@ class SqliteContactRepository implements ContactRepository
             $id
         ]);
     }
+
+    public function delete(string $id): void
+    {
+        $this->db->executeStatement("DELETE FROM contacts WHERE id = ?", [$id]);
+    }
 }

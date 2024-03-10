@@ -63,4 +63,12 @@ class ContactController extends AbstractController
 
         return new JsonResponse($contact);
     }
+
+    #[Route("/api/contact/{id}", methods: ["DELETE"])]
+    public function delete(string $id): Response
+    {
+        $this->contactManagementService->deleteContact($id);
+
+        return new JsonResponse(null, 204);
+    }
 }
