@@ -1,13 +1,60 @@
 {% extends "base.html.twig" %}
 
+{% block stylesheets %}
+<style>
+    .label {
+        font-weight: 600;
+    }
+
+    ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        padding: 0;
+    }
+
+    .contacts-list a {
+        color: black;
+    }
+
+    .contacts-list li {
+        list-style: none;
+        padding: 16px;
+        border: 2px solid #efefef;
+        border-radius: 4px;
+    }
+
+    .contacts-list li header {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    .contacts-list li:hover header {
+        color: salmon;
+    }
+</style>
+{% endblock %}
+
 {% block header %}
     Contacts
 {% endblock %}
 
 {% block body %}
-    <ul>
+    <div class="actions">
+        <form method="get" action="{{ path('contact_create') }}"><button type="submit">Add</button></form>
+    </div>
+    <ul class="contacts-list">
         {% for contact in contacts %}
-            <li><a href="{{ path('contact_detail', { id: contact.id }) }}">{{ contact.firstName }} {{ contact.lastName }}</a></li>
+            <a href="{{ path('contact_detail', { id: contact.id }) }}">
+                <li>
+                    <header>
+                        {{ contact.firstName }} {{ contact.lastName }}
+                    </header>
+                    {{ contact.email }}
+                </li>
+            </a>
         {% endfor %}
     </ul>
 {% endblock %}

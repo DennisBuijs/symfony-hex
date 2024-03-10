@@ -24,25 +24,25 @@
 {% endblock %}
 
 {% block header %}
-    {{ contact.firstName }} {{ contact.lastName }}
+    New contact
 {% endblock %}
 
 {% block body %}
-<form action="{{ path('contact_edit_submit', { id: contact.id }) }}" method="post">
+<form action="{{ path('contact_create_submit') }}" method="post">
     <div class="contact-details">
         <div class="form-input">
             <div class="label">First name</div>
-            <input type="text" value="{{ contact.firstName }}" name="firstName">
+            <input type="text" name="firstName">
         </div>
 
         <div class="form-input">
             <div class="label">Last name</div>
-            <input type="text" value="{{ contact.lastName }}" name="lastName">
+            <input type="text" name="lastName">
         </div>
 
         <div class="detail">
             <div class="label">Email</div>
-            <input type="text" value="{{ contact.email }}" name="email">
+            <input type="text" name="email">
         </div>
     </div>
 

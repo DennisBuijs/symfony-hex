@@ -43,6 +43,11 @@ class MemoryContactRepository implements ContactRepository
 
         return $contactCollection;
     }
+
+    public function create(Contact $contact): void 
+    {
+        $this->contacts[] = $contact;
+    }
     
     public function update(string $id, Contact $contact): void
     {

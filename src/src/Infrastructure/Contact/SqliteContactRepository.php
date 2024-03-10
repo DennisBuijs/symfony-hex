@@ -48,6 +48,19 @@ class SqliteContactRepository implements ContactRepository
 
         return $contactCollection;
     }
+
+    public function create(Contact $contact): void
+    {
+        $this->db->executeStatement("
+            INSERT INTO contacts (id, first_name, last_name, email, created_at, updated_at)
+            VALUES (?, ?, ?, ?, 'NOW', CURRENT_TIMESTAMP);
+        ", [
+            $contact->id,
+            $contact->firstName,
+            $contact->lastName,
+            $contact->email
+        ]);
+    }
     
     public function update(string $id, Contact $contact): void
     {
