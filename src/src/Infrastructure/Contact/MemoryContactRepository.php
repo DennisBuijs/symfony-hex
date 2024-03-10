@@ -30,12 +30,14 @@ class MemoryContactRepository implements ContactRepository
             "0000004JFGQ5ZY01Y9JAK0ZSA9" => new Contact(
                 "0000004JFGQ5ZY01Y9JAK0ZSA9",
                 "First",
-                "Last"
+                "Last",
+                "first.last@example.com"
             ),
             "0000004JFGDXXSHJV5YKNZJFEY" => new Contact(
                 "0000004JFGDXXSHJV5YKNZJFEY",
                 "Aart",
-                "Appeltaart"
+                "Appeltaart",
+                "aart.appeltaart@example.com"
             ),
         ];
     }

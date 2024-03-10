@@ -6,7 +6,8 @@
 
         <style>
             * {
-            box-sizing: border-box;
+                box-sizing: border-box;
+                font-family: inherit;
             }
 
             body {
@@ -38,6 +39,21 @@
                 color: salmon;
             }
 
+            button {
+                background: salmon;
+                color: white;
+                border-radius: 2px;
+                border: 0;
+                padding: 4px 12px;
+                font-weight: 600;
+                font-size: inherit;
+            }
+
+            button:hover {
+                background-color: rgb(250, 128, 114, .8);
+                cursor: pointer;
+            }
+
             .content {
                 width: 50vw;
                 position: relative;
@@ -45,6 +61,8 @@
                 padding-top: 40px;
             }
         </style>
+
+        {% block stylesheets %}{% endblock %}
     </head>
     <body>
         {{ include('menu.html.twig') }}
