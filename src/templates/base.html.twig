@@ -5,15 +5,53 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         <style>
+            * {
+            box-sizing: border-box;
+            }
+
             body {
                 margin: 0;
                 font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
+            }
+
+            nav {
+                display: flex;
+                border-bottom: 2px solid #eee;
+                height: 80px;
+                align-items: center;
+                padding: 0 32px;
+            }
+
+            nav li {
+                list-style: none;
+                padding: 8px;
+                margin-right: 32px;
+                border-radius: 4px;
+            }
+
+            nav li:hover, nav li.active {
+                background: #efefef;
+                cursor: pointer;
+            }
+
+            a {
+                color: salmon;
+            }
+
+            .content {
+                width: 50vw;
+                position: relative;
+                left: 25vw;
+                padding-top: 40px;
             }
         </style>
     </head>
     <body>
         {{ include('menu.html.twig') }}
+        <div class="content">
+            {% block breadcrumbs %}&nbsp;{% endblock %}
             <h1>{% block header %}{% endblock %}</h1>
             {% block body %}{% endblock %}
+        </div>
     </body>
 </html>
