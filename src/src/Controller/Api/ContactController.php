@@ -22,11 +22,23 @@ class ContactController extends AbstractController
         $contactsAsArray = [];
         foreach ($contacts as $contact) {
             $contactsAsArray[] = [
+                "id" => $contact->id,
                 "firstName" => $contact->firstName,
                 "lastName" => $contact->lastName,
             ];
         }
 
         return new JsonResponse($contactsAsArray);
+    }
+
+    #[Route("/api/contact/{id}")]
+    public function getOne(string $id): Response
+    {
+        $contactRepository = new MemoryContactRepository();
+        $contactService = new ContactManagementService($contactRepository);
+
+        $contact = $contactService->getContact($id);
+
+        return new JsonResponse($contact);
     }
 }
