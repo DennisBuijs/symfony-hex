@@ -17,7 +17,7 @@ class ContactController extends AbstractController
     ) {
     }
 
-    #[Route("/api/contact")]
+    #[Route("/api/contact", methods: ["GET"])]
     public function get(): Response
     {
         $contacts = $this->contactManagementService->getContacts();
@@ -38,6 +38,17 @@ class ContactController extends AbstractController
     public function getOne(string $id): Response
     {
         $contact = $this->contactManagementService->getContact($id);
+
+        return new JsonResponse($contact);
+    }
+
+    #[Route("/api/contact", methods: ["POST"])]
+    public function post(Request $request): Response
+    {
+        $requestBody = json_decode($request->getContent());
+        $contactBody = new Contact(null, $requestBody->firstName, $requestBody->lastName, $requestBody->email);
+
+        $contact = $this->contactManagementService->createContact($contactBody);
 
         return new JsonResponse($contact);
     }
