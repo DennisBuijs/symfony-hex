@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Domain\Contact;
+
 class Contact
 {
     public function __construct(

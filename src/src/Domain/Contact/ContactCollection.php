@@ -1,6 +1,8 @@
 <?php
 
-class ContactCollection implements IteratorAggregate
+namespace App\Domain\Contact;
+
+class ContactCollection implements \IteratorAggregate
 {
     private array $contacts = [];
 
@@ -9,8 +11,8 @@ class ContactCollection implements IteratorAggregate
         $this->contacts[] = $contact;
     }
 
-    public function getIterator(): ArrayIterator
+    public function getIterator(): \ArrayIterator
     {
-        return new ArrayIterator($this->contacts);
+        return new \ArrayIterator($this->contacts);
     }
 }

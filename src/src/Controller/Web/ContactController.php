@@ -2,21 +2,22 @@
 
 namespace App\Controller\Web;
 
-use ContactManagementService;
-use MemoryContactRepository;
+use App\Domain\Contact\ContactManagementService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
+    public function __construct(
+        private ContactManagementService $contactManagementService
+    ) {
+    }
+
     #[Route("/contact", name: "contact_list")]
     public function get(): Response
     {
-        $contactRepository = new MemoryContactRepository();
-        $contactService = new ContactManagementService($contactRepository);
-
-        $contacts = $contactService->getContacts();
+        $contacts = $this->contactManagementService->getContacts();
 
         return $this->render("contact/list.html.twig", [
             "contacts" => $contacts,
@@ -26,10 +27,7 @@ class ContactController extends AbstractController
     #[Route("/contact/{id}", name: "contact_detail")]
     public function getOne(string $id): Response
     {
-        $contactRepository = new MemoryContactRepository();
-        $contactService = new ContactManagementService($contactRepository);
-
-        $contact = $contactService->getContact($id);
+        $contact = $this->contactManagementService->getContact($id);
 
         return $this->render("contact/detail.html.twig", [
             "contact" => $contact,

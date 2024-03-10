@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Infrastructure\Contact;
+
+use App\Domain\Contact\ContactRepository;
+use App\Domain\Contact\Contact;
+use App\Domain\Contact\ContactCollection;
+
 class MemoryContactRepository implements ContactRepository
 {
     public function find(string $id): Contact
