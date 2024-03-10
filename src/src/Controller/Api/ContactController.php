@@ -1,16 +1,17 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use ContactManagementService;
 use MemoryContactRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ContactController extends AbstractController
 {
-    #[Route("/contact")]
+    #[Route("/api/contact")]
     public function get(): Response
     {
         $contactRepository = new MemoryContactRepository();
@@ -18,8 +19,14 @@ class ContactController extends AbstractController
 
         $contacts = $contactService->getContacts();
 
-        return $this->render("contact/list.html.twig", [
-            "contacts" => $contacts,
-        ]);
+        $contactsAsArray = [];
+        foreach ($contacts as $contact) {
+            $contactsAsArray[] = [
+                "firstName" => $contact->firstName,
+                "lastName" => $contact->lastName,
+            ];
+        }
+
+        return new JsonResponse($contactsAsArray);
     }
 }
